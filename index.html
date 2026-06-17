@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="精神科や心療内科の通院費・お薬代が安くなる「自立支援医療（精神通院医療）」の自己負担上限額を、15秒で簡単シミュレーション。あなたの毎月の支払いがいくら安くなるか、目安を瞬時に計算します。">
+    
+    <!-- 👑 テスト環境用・本番公開時に削除 -->
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- 👑 正規URLの指定 -->
+    <link rel="canonical" href="https://for-welfare.pray-power-is-god-and-cocoro.com/independence-support/">
+    
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20100%20100%27%3E%3Ctext%20y%3D%270.9em%27%20font-size%3D%2790%27%3E%F0%9F%8C%BF%3C%2Ftext%3E%3C%2Fsvg%3E">
+    <title>【無料・15秒】自立支援医療 負担額シミュレータ</title>
+
+    <!-- 👑 Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LTJJ73RNC5"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-LTJJ73RNC5');
+    </script>
+
+    <!-- 👑 セクション：CSSスタイル -->
+    <style>
+        :root {
+            --bg-color: #f4f9f4;
+            --main-green: #5a9e82;
+            --text-main: #333333;
+            --text-sub: #666666;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+        }
+        body { background-color: var(--bg-color); color: var(--text-main); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+        .header { background-color: var(--main-green); color: white; text-align: center; padding: 18px 10px; font-weight: bold; font-size: 1.2rem; margin: 0; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px 15px; }
+        
+        .form-box { background: var(--card-bg); padding: 25px 20px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.03); border: 1px solid var(--border-color); }
+        .form-group { margin-bottom: 20px; }
+        .form-label { display: block; font-weight: bold; margin-bottom: 8px; color: var(--text-main); }
+        .form-select, .form-input { width: 100%; padding: 12px; font-size: 1rem; border: 1px solid #ccc; border-radius: 8px; box-sizing: border-box; }
+        .checkbox-label { display: flex; align-items: center; font-size: 0.95rem; cursor: pointer; color: var(--text-main); }
+        .checkbox-label input { margin-right: 8px; transform: scale(1.2); }
+        
+        .btn-calc { background-color: var(--main-green); color: white; border: none; padding: 15px 20px; font-size: 1.1rem; font-weight: bold; border-radius: 30px; width: 100%; cursor: pointer; box-shadow: 0 4px 6px rgba(90, 158, 130, 0.25); transition: 0.2s; }
+        .btn-calc:active { transform: scale(0.98); }
+
+        .result-box { display: none; background: #eef2ff; padding: 20px; border-radius: 12px; margin-bottom: 25px; border: 2px solid #a5b4fc; }
+        .result-title { color: #4338ca; font-size: 1.1rem; font-weight: bold; margin-top: 0; margin-bottom: 15px; text-align: center; }
+        .result-text { font-size: 1rem; color: var(--text-main); line-height: 1.8; text-align: center; }
+        .highlight { font-size: 1.3rem; color: #dc2626; font-weight: bold; }
+
+        .checklist-box { background: #fffbeb; padding: 15px; border-radius: 8px; border: 1px solid #fde68a; margin-top: 20px; }
+        .checklist-title { font-weight: bold; color: #b45309; margin-top: 0; margin-bottom: 10px; }
+        .checklist { list-style: none; padding-left: 0; margin: 0; font-size: 0.9rem; }
+        .checklist li { margin-bottom: 6px; }
+
+        .disclaimer { background-color: #f8fafc; color: #64748b; padding: 15px; border-radius: 8px; font-size: 0.75rem; margin-top: 30px; border: 1px solid #e2e8f0; }
+        
+        .adsense-container { text-align: center; margin: 35px 0; min-height: 250px; background-color: rgba(255, 255, 255, 0.5); border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px dashed #cbd5e1; }
+        .donation-box { background-color: #ffffff; border: 1px solid var(--border-color); padding: 25px 20px; border-radius: 12px; text-align: center; margin-top: 40px; }
+        .donation-title { color: var(--main-green); font-weight: bold; font-size: 1.1rem; margin-bottom: 10px; }
+        .donation-text { font-size: 0.9rem; color: var(--text-sub); margin-bottom: 20px; text-align: left; line-height: 1.7; }
+        .btn-donation { display: inline-block; background-color: #ff9900; color: white; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 0.95rem; }
+    </style>
+</head>
+<body>
+
+    <h1 class="header">🌿 まごころ医療費シミュレータ<br>（自立支援医療 精神通院編）</h1>
+
+    <div class="container">
+        <!-- 👑 セクション：入力フォーム -->
+        <div class="form-box">
+            <div style="font-size: 0.9rem; color: var(--text-sub); margin-bottom: 20px; text-align: center;">
+                3つの質問に答えるだけで、あなたの毎月の「お薬代・通院費」の上限額の目安がわかります。
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Q1. 世帯の課税状況（所得）は？</label>
+                <select id="incomeLevel" class="form-select">
+                    <option value="seikatsu_hogo">生活保護を受給している</option>
+                    <option value="low_1" selected>市民税非課税 ＋ 世帯年収80万円以下</option>
+                    <option value="low_2">市民税非課税 ＋ 世帯年収80万円超</option>
+                    <option value="middle">市民税課税（※目安：年収約800万円未満）</option>
+                    <option value="high">市民税課税（※目安：年収約800万円以上）</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Q2. 対象となる病気ですか？</label>
+                <label class="checkbox-label">
+                    <input type="checkbox" id="isSevere" checked> 統合失調症、うつ病、てんかん、認知症など（重度かつ継続）に当てはまる
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Q3. 今、毎月払っている医療費は？</label>
+                <input type="number" id="currentCost" class="form-input" placeholder="例：9000（数字のみ）">
+                <small style="color: var(--text-sub); font-size: 0.8rem; display: block; margin-top: 5px;">※おおよそで構いません。空欄でも上限額はわかります。</small>
+            </div>
+
+            <button class="btn-calc" onclick="calculateLimit()">✨ 自己負担の目安を計算する</button>
+        </div>
+
+        <!-- 👑 セクション：結果表示エリア -->
+        <div id="resultBox" class="result-box">
+            <h2 class="result-title">🎯 計算結果の目安</h2>
+            <div id="resultText" class="result-text"></div>
+            
+            <div class="checklist-box">
+                <h3 class="checklist-title">📝 役所へ申請に行く際の持ち物</h3>
+                <ul class="checklist">
+                    <li>☑ 自立支援医療用の「医師の診断書」</li>
+                    <li>☑ 世帯全員の保険証（コピー可）</li>
+                    <li>☑ マイナンバーがわかるもの</li>
+                    <li>☑ ご印鑑</li>
+                    <li>※非課税世帯の場合は、年金額がわかる通知書などが必要な場合があります。</li>
+                </ul>
+                <small style="color: #92400e; font-size: 0.75rem; display: block; margin-top: 10px;">※この画面をスクリーンショット（画面メモ）して役所の窓口で見せるとスムーズです。</small>
+            </div>
+        </div>
+
+        <!-- 👑 Google AdSense 広告ユニット（本番稼働時にコメントアウト解除） -->
+        <!--
+        <div class="adsense-container" style="text-align: center; margin: 40px 0; min-height: 250px;">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2908004621823900" crossorigin="anonymous"></script>
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:300px;height:250px"
+                 data-ad-client="ca-pub-2908004621823900"
+                 data-ad-slot="3799886389"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        -->
+
+        <!-- 👑 寄付支援セクション -->
+        <div class="donation-box">
+            <div class="donation-title">☕ 運営へのあたたかいご支援</div>
+            <div class="donation-text">
+                このサイトが少しでもお役に立てたなら、運営継続のためにご支援（100円缶コーヒー1杯分でも）をいただけると非常に励みになります。いただいたご支援は、サイトの安定した運営維持等、と、ゆくゆくは福祉活動への思いに使わせていただきます。
+            </div>
+            <a href="https://ofuse.me/fbcb2675" class="btn-donation">🎁 開発者を支援する</a>
+        </div>
+
+        <!-- 👑 免責事項 -->
+        <div class="disclaimer">
+            <strong>【免責事項とお願い】</strong><br>
+            ※本シミュレーターの計算結果は、自立支援医療（精神通院医療）の制度基準に基づく簡易的な目安です。実際の世帯区分の判定（所得割額の計算など）や最終的な負担額の決定は、お住まいの市区町村窓口（障害福祉課など）の正式な判定に準じます。必ず窓口で最新の情報をご確認ください。（基準日：2026年6月）
+        </div>
+    </div>
+
+    <!-- 👑 セクション：計算ロジック (JavaScript) -->
+    <script>
+        // 制度の固定ルール（定数）
+        const SYSTEM_CONSTANTS = {
+            limit_low_1: 2500,
+            limit_low_2: 5000,
+            limit_middle: 10000,
+            limit_high: 20000
+        };
+
+        function calculateLimit() {
+            const incomeLevel = document.getElementById("incomeLevel").value;
+            const isSevere = document.getElementById("isSevere").checked;
+            const currentCostInput = document.getElementById("currentCost").value;
+            const currentCost = currentCostInput ? parseInt(currentCostInput, 10) : 0;
+
+            let limitAmount = null;
+            let limitText = "";
+            let isEligible = true;
+
+            // 1. 所得区分ごとの上限額判定
+            if (incomeLevel === "seikatsu_hogo") {
+                limitAmount = 0;
+                limitText = "0円（自己負担なし）";
+            } 
+            else if (incomeLevel === "low_1") {
+                limitAmount = SYSTEM_CONSTANTS.limit_low_1;
+                limitText = "2,500円";
+            } 
+            else if (incomeLevel === "low_2") {
+                limitAmount = SYSTEM_CONSTANTS.limit_low_2;
+                limitText = "5,000円";
+            } 
+            else if (incomeLevel === "middle") {
+                if (isSevere) {
+                    limitAmount = SYSTEM_CONSTANTS.limit_middle;
+                    limitText = "5,000円 または 10,000円";
+                } else {
+                    limitText = "上限設定なし（原則1割負担になります）";
+                }
+            } 
+            else if (incomeLevel === "high") {
+                if (isSevere) {
+                    limitAmount = SYSTEM_CONSTANTS.limit_high;
+                    limitText = "20,000円（※特例措置による）";
+                } else {
+                    isEligible = false;
+                    limitText = "制度対象外（通常の3割負担のままとなります）";
+                }
+            }
+
+            // 2. 結果テキストの組み立て
+            let resultHtml = "";
+
+            if (!isEligible) {
+                resultHtml = `大変申し訳ありません。<br>現在の条件では <span class="highlight">制度の対象外</span> となる可能性が高いです。`;
+            } else {
+                resultHtml = `あなたの毎月の支払い（上限）は、最大<br><span class="highlight">${limitText}</span> に固定される目安です！<br><br>`;
+                
+                // 医療費の入力がある場合、節約額を計算
+                if (currentCost > 0) {
+                    const cost1wari = Math.floor(currentCost / 3); // 3割負担額から1割負担額を概算
+                    let estimatedCost = cost1wari;
+                    
+                    if (limitAmount !== null && cost1wari > limitAmount) {
+                        // 1割負担額が上限額を超えている場合は、上限額が適用される
+                        estimatedCost = limitAmount;
+                    }
+                    
+                    const saveAmount = currentCost - estimatedCost;
+                    
+                    if (saveAmount > 0) {
+                        resultHtml += `今の医療費（${currentCost.toLocaleString()}円）が、約 <strong>${estimatedCost.toLocaleString()}円</strong> に下がる可能性があります。<br>`;
+                        resultHtml += `申請すると、毎月 約 <strong style="color: #059669;">${saveAmount.toLocaleString()}円</strong> お手元に残る計算になります。`;
+                    } else {
+                        resultHtml += `現在のお支払額が上限内に収まっているため、金額的な変化は少ない可能性がありますが、原則1割負担になるメリットがあります。`;
+                    }
+                }
+            }
+
+            // 3. 画面に表示
+            document.getElementById("resultText").innerHTML = resultHtml;
+            document.getElementById("resultBox").style.display = "block";
+            
+            // 結果までスムーズにスクロール
+            document.getElementById("resultBox").scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    </script>
+</body>
+</html>
