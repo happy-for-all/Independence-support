@@ -308,7 +308,7 @@
 
                     if (saveAmount > 0) {
                         if (limitAmount !== null && estimatedCost === limitAmount) {
-                            resultHtml += `今の医療費（${currentCost.toLocaleString()}円）の1割は約${cost1wari.toLocaleString()}円ですが、上限額が適用され <strong>${estimatedCost.toLocaleString()}円</strong> になる目安です。<br>`;
+                            resultHtml += `今の医療費（${currentCost.toLocaleString()}円）は、制度を使うことで上限額の <strong>${estimatedCost.toLocaleString()}円</strong> に下がる目安です。<br>`;
                         } else {
                             resultHtml += `今の医療費（${currentCost.toLocaleString()}円）が、1割負担により約 <strong>${estimatedCost.toLocaleString()}円</strong> に下がる目安です。<br>`;
                             if (limitAmount !== null) {
