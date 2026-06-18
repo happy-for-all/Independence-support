@@ -233,12 +233,13 @@
     <script>
         // 👑 制度の固定ルール（定数）
         // 中間層を1と2に厳密に分割し、法律に完璧に準拠
+
         const SYSTEM_CONSTANTS = {
             limit_low_1: 2500,
             limit_low_2: 5000,
-            limit_middle_1: 5000,   // 所得割3万3千円未満（重度かつ継続）
-            limit_middle_2: 10000,  // 所得割23万5千円未満（重度かつ継続）
-            limit_high: 20000       // 一定所得以上（重度かつ継続・特例措置）
+            limit_middle_1: 5000,
+            limit_middle_2: 10000,
+            limit_high: 20000
         };
 
         function calculateLimit() {
@@ -251,94 +252,82 @@
             let limitText = "";
             let isEligible = true;
 
-            // 👑 所得区分ごとの上限額判定（全6パターンに完全対応）
             if (incomeLevel === "seikatsu_hogo") {
                 limitAmount = 0;
                 limitText = "0円（自己負担なし）";
-            } 
-            else if (incomeLevel === "low_1") {
+            } else if (incomeLevel === "low_1") {
                 limitAmount = SYSTEM_CONSTANTS.limit_low_1;
                 limitText = "2,500円";
-            } 
-            else if (incomeLevel === "low_2") {
+            } else if (incomeLevel === "low_2") {
                 limitAmount = SYSTEM_CONSTANTS.limit_low_2;
                 limitText = "5,000円";
-            } 
-            else if (incomeLevel === "middle_1") {
+            } else if (incomeLevel === "middle_1") {
                 if (isSevere) {
                     limitAmount = SYSTEM_CONSTANTS.limit_middle_1;
                     limitText = "5,000円";
                 } else {
                     limitText = "上限設定なし";
                 }
-            } 
-            else if (incomeLevel === "middle_2") {
+            } else if (incomeLevel === "middle_2") {
                 if (isSevere) {
                     limitAmount = SYSTEM_CONSTANTS.limit_middle_2;
                     limitText = "10,000円";
                 } else {
                     limitText = "上限設定なし";
                 }
-            } 
-            else if (incomeLevel === "high") {
+            } else if (incomeLevel === "high") {
                 if (isSevere) {
                     limitAmount = SYSTEM_CONSTANTS.limit_high;
                     limitText = "20,000円（※経過措置の特例による）";
                 } else {
                     isEligible = false;
-                    limitText = "制度対象外（通常の3割負担のままとなります）";
                 }
             }
 
-            // 2. 結果テキストの組み立て
             let resultHtml = "";
 
             if (!isEligible) {
                 resultHtml = `大変申し訳ありません。<br>現在の条件では <span class="highlight">制度の対象外</span> となる可能性が高いです。<br>
 <small style="color: var(--text-sub);">※ただし、統合失調症・うつ病などで継続的な通院が必要と医師が認める場合（重度かつ継続）は対象になる可能性があります。Q2のチェックも確認してみてください。</small>`;
             } else {
-                
-                // 👑 【論理バグ修正】上限がない場合とある場合で、正しい日本語に分岐させます
                 if (limitAmount === null) {
                     resultHtml = `自己負担の上限は<span class="highlight">設定されません</span>が、<br>医療費は原則<strong>「1割負担」</strong>に軽減される目安です！<br><br>`;
                 } else {
-                    
-                resultHtml = `あなたの毎月の支払い（上限）は、最大<br><span class="highlight">${limitText}</span> に固定される目安です！<br><br>`;
-                } 
-                
-                // 医療費の入力がある場合、節約額を計算
+                    resultHtml = `あなたの毎月の支払い（上限）は、最大<br><span class="highlight">${limitText}</span> に固定される目安です！<br><br>`;
+                }
+
                 if (currentCost > 0) {
-                    const cost1wari = Math.floor(currentCost / 3); // 3割負担額から1割負担額を概算
+                    const cost1wari = Math.floor(currentCost / 3);
                     let estimatedCost = cost1wari;
-                    
+
                     if (limitAmount !== null && cost1wari > limitAmount) {
-                        // 1割負担額が上限額を超えている場合は、上限額が適用される
                         estimatedCost = limitAmount;
                     }
-                    
-                    const saveAmount = currentCost - estimatedCost;
-                    
-                    if (saveAmount > 0) {
-                    if (limitAmount !== null && estimatedCost === limitAmount) {
-                    // 上限額が適用されているケース
-                            resultHtml += `今の医療費（${currentCost.toLocaleString()}円）の1割は約${cost1wari.toLocaleString()}円ですが、上限額が適用され <strong>${estimatedCost.toLocaleString()}円</strong> になる目安です。<br>`;
-                            } else {
-                    // 1割負担がそのまま適用されるケース（上限より低い）
-                    resultHtml += `今の医療費（${currentCost.toLocaleString()}円）が、1割負担により約 <strong>${estimatedCost.toLocaleString()}円</strong> に下がる目安です。<br>`;
-                    if (limitAmount !== null) {
-                            resultHtml += `<small style="color: var(--text-sub);">（1割負担額が上限額${limitAmount.toLocaleString()}円を下回るため、上限額ではなく1割負担額が適用されます）</small><br>`;
-        }
-    }
-    resultHtml += `申請すると、毎月 約 <strong style="color: #059669;">${saveAmount.toLocaleString()}円</strong> お手元に残る計算になります。`;
-}
 
-            // 3. 画面に表示
+                    const saveAmount = currentCost - estimatedCost;
+
+                    if (saveAmount > 0) {
+                        if (limitAmount !== null && estimatedCost === limitAmount) {
+                            resultHtml += `今の医療費（${currentCost.toLocaleString()}円）の1割は約${cost1wari.toLocaleString()}円ですが、上限額が適用され <strong>${estimatedCost.toLocaleString()}円</strong> になる目安です。<br>`;
+                        } else {
+                            resultHtml += `今の医療費（${currentCost.toLocaleString()}円）が、1割負担により約 <strong>${estimatedCost.toLocaleString()}円</strong> に下がる目安です。<br>`;
+                            if (limitAmount !== null) {
+                                resultHtml += `<small style="color: var(--text-sub);">（1割負担額が上限額${limitAmount.toLocaleString()}円を下回るため、上限額ではなく1割負担額が適用されます）</small><br>`;
+                            }
+                        }
+                        resultHtml += `申請すると、毎月 約 <strong style="color: #059669;">${saveAmount.toLocaleString()}円</strong> お手元に残る計算になります。`;
+                    } else {
+                        resultHtml += `現在のお支払額が上限内に収まっているため、金額的な変化は少ない可能性がありますが、原則1割負担になるメリットがあります。`;
+                    }
+                }
+            }
+
             document.getElementById("resultText").innerHTML = resultHtml;
             document.getElementById("resultBox").style.display = "block";
-            
-            // 結果までスムーズにスクロール
             document.getElementById("resultBox").scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
+
+        
     </script>
 </body>
 </html>
