@@ -93,8 +93,8 @@
                     <option value="seikatsu_hogo">生活保護を受給している</option>
                     <option value="low_1" selected>世帯が市民税非課税 ＋ ご本人の収入が年80万9千円以下</option>
                     <option value="low_2">世帯が市民税非課税 ＋ ご本人の収入が年80万9千円超</option>
-                    <option value="middle_1">市民税課税 ＋ 市民税所得割が3万3千円未満（中間1）</option>
-                    <option value="middle_2">市民税課税 ＋ 市民税所得割が3万3千円以上〜23万5千円未満（中間2）</option>
+                    <option value="middle_1">市民税課税 ＋ 市民税所得割が3万3千円未満（中間1 ※重度継続でない場合は上限なし・1割負担）</option>
+                    <option value="middle_2">市民税課税 ＋ 市民税所得割が3万3千円以上〜23万5千円未満（中間2 ※重度継続でない場合は上限なし・1割負担）</option>
                     <option value="high">市民税課税 ＋ 市民税所得割が23万5千円以上（一定所得以上）</option>
                 </select>
                 <small style="color: var(--text-sub); font-size: 0.75rem; display: block; margin-top: 5px;">※ご自身の「所得割」の金額は、役所で発行される課税証明書などで確認できます。</small>
@@ -104,7 +104,7 @@
                 <label class="form-label">Q2. 対象となる病気ですか？</label>
                 <label class="checkbox-label">
                     <!-- 👑 改善：checkedを削除して初期値を「チェックなし」に変更 -->
-                    <input type="checkbox" id="isSevere"> 統合失調症、うつ病、てんかん、認知症など（重度かつ継続）に当てはまる
+                    <input type="checkbox" id="isSevere"> 統合失調症・うつ病・てんかん・認知症など、継続的な通院が必要と医師が認めた（「重度かつ継続」に該当する）
                 </label>
                 <!-- 👑 小さな親切：チェックを入れてほしい人を明確にする注記を追加 -->
                 <small style="color: var(--text-sub); font-size: 0.8rem; display: block; margin-top: 5px; margin-left: 24px;">※上記に当てはまる（主治医から診断書が出ているなど）場合のみ、チェックを入れてください。</small>
@@ -114,7 +114,7 @@
                 <label class="form-label">Q3. 今、毎月払っている医療費は？</label>
                 <!-- 👑 バグ修正：マイナス値が入らないよう min="0" を追加 -->
                 <input type="number" id="currentCost" class="form-input" min="0" placeholder="例：9000（数字のみ）">
-                <small style="color: var(--text-sub); font-size: 0.8rem; display: block; margin-top: 5px;">※おおよそで構いません。空欄でも上限額はわかります。</small>
+                <small style="color: var(--text-sub); font-size: 0.8rem; display: block; margin-top: 5px;">※現在の窓口での支払額（3割負担の金額）をご入力ください。おおよそで構いません。空欄でも上限額はわかります。</small>
             </div>
 
             <button class="btn-calc" onclick="calculateLimit()">✨ 自己負担の目安を計算する</button>
