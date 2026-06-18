@@ -294,7 +294,8 @@
             let resultHtml = "";
 
             if (!isEligible) {
-                resultHtml = `大変申し訳ありません。<br>現在の条件では <span class="highlight">制度の対象外</span> となる可能性が高いです。`;
+                resultHtml = `大変申し訳ありません。<br>現在の条件では <span class="highlight">制度の対象外</span> となる可能性が高いです。<br>
+<small style="color: var(--text-sub);">※ただし、統合失調症・うつ病などで継続的な通院が必要と医師が認める場合（重度かつ継続）は対象になる可能性があります。Q2のチェックも確認してみてください。</small>`;
             } else {
                 
                 // 👑 【論理バグ修正】上限がない場合とある場合で、正しい日本語に分岐させます
