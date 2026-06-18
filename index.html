@@ -269,7 +269,7 @@
                     limitAmount = SYSTEM_CONSTANTS.limit_middle_1;
                     limitText = "5,000円";
                 } else {
-                    limitText = "上限設定なし（原則1割負担になります）";
+                    limitText = "上限設定なし";
                 }
             } 
             else if (incomeLevel === "middle_2") {
@@ -277,7 +277,7 @@
                     limitAmount = SYSTEM_CONSTANTS.limit_middle_2;
                     limitText = "10,000円";
                 } else {
-                    limitText = "上限設定なし（原則1割負担になります）";
+                    limitText = "上限設定なし";
                 }
             } 
             else if (incomeLevel === "high") {
@@ -296,6 +296,12 @@
             if (!isEligible) {
                 resultHtml = `大変申し訳ありません。<br>現在の条件では <span class="highlight">制度の対象外</span> となる可能性が高いです。`;
             } else {
+                
+                // 👑 【論理バグ修正】上限がない場合とある場合で、正しい日本語に分岐させます
+                if (limitAmount === null) {
+                    resultHtml = `自己負担の上限は<span class="highlight">設定されません</span>が、<br>医療費は原則<strong>「1割負担」</strong>に軽減される目安です！<br><br>`;
+                } else {
+                    
                 resultHtml = `あなたの毎月の支払い（上限）は、最大<br><span class="highlight">${limitText}</span> に固定される目安です！<br><br>`;
                 
                 // 医療費の入力がある場合、節約額を計算
