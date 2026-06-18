@@ -95,8 +95,11 @@
             <div class="form-group">
                 <label class="form-label">Q2. 対象となる病気ですか？</label>
                 <label class="checkbox-label">
-                    <input type="checkbox" id="isSevere" checked> 統合失調症、うつ病、てんかん、認知症など（重度かつ継続）に当てはまる
+                    <!-- 👑 改善：checkedを削除して初期値を「チェックなし」に変更 -->
+                    <input type="checkbox" id="isSevere"> 統合失調症、うつ病、てんかん、認知症など（重度かつ継続）に当てはまる
                 </label>
+                <!-- 👑 小さな親切：チェックを入れてほしい人を明確にする注記を追加 -->
+                <small style="color: var(--text-sub); font-size: 0.8rem; display: block; margin-top: 5px; margin-left: 24px;">※上記に当てはまる（主治医から診断書が出ているなど）場合のみ、チェックを入れてください。</small>
             </div>
 
             <div class="form-group">
