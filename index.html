@@ -78,15 +78,18 @@
                 3つの質問に答えるだけで、あなたの毎月の「お薬代・通院費」の上限額の目安がわかります。
             </div>
 
+            <!-- 👑 法的バグ修正：年収目安を削除し、本人の収入と所得割に正確に基づいた表現に変更 -->
             <div class="form-group">
                 <label class="form-label">Q1. 世帯の課税状況（所得）は？</label>
                 <select id="incomeLevel" class="form-select">
                     <option value="seikatsu_hogo">生活保護を受給している</option>
-                    <option value="low_1" selected>市民税非課税 ＋ 世帯年収80万円以下</option>
-                    <option value="low_2">市民税非課税 ＋ 世帯年収80万円超</option>
-                    <option value="middle">市民税課税（※目安：年収約800万円未満）</option>
-                    <option value="high">市民税課税（※目安：年収約800万円以上）</option>
+                    <option value="low_1" selected>世帯が市民税非課税 ＋ ご本人の収入が年80万9千円以下</option>
+                    <option value="low_2">世帯が市民税非課税 ＋ ご本人の収入が年80万9千円超</option>
+                    <option value="middle_1">市民税課税 ＋ 市民税所得割が3万3千円未満（中間1）</option>
+                    <option value="middle_2">市民税課税 ＋ 市民税所得割が3万3千円以上〜23万5千円未満（中間2）</option>
+                    <option value="high">市民税課税 ＋ 市民税所得割が23万5千円以上（一定所得以上）</option>
                 </select>
+                <small style="color: var(--text-sub); font-size: 0.75rem; display: block; margin-top: 5px;">※ご自身の「所得割」の金額は、役所で発行される課税証明書などで確認できます。</small>
             </div>
 
             <div class="form-group">
@@ -98,7 +101,8 @@
 
             <div class="form-group">
                 <label class="form-label">Q3. 今、毎月払っている医療費は？</label>
-                <input type="number" id="currentCost" class="form-input" placeholder="例：9000（数字のみ）">
+                <!-- 👑 バグ修正：マイナス値が入らないよう min="0" を追加 -->
+                <input type="number" id="currentCost" class="form-input" min="0" placeholder="例：9000（数字のみ）">
                 <small style="color: var(--text-sub); font-size: 0.8rem; display: block; margin-top: 5px;">※おおよそで構いません。空欄でも上限額はわかります。</small>
             </div>
 
@@ -149,18 +153,22 @@
         <!-- 👑 免責事項 -->
         <div class="disclaimer">
             <strong>【免責事項とお願い】</strong><br>
-            ※本シミュレーターの計算結果は、自立支援医療（精神通院医療）の制度基準に基づく簡易的な目安です。実際の世帯区分の判定（所得割額の計算など）や最終的な負担額の決定は、お住まいの市区町村窓口（障害福祉課など）の正式な判定に準じます。必ず窓口で最新の情報をご確認ください。（基準日：2026年6月）
+            ※本シミュレーターの計算結果は、自立支援医療（精神通院医療）の制度基準に基づく簡易的な目安です。実際の世帯区分の判定（所得割額の計算など）や最終的な負担額の決定は、お住まいの市区町村窓口（障害福祉課など）の正式な判定に準じます。必ず窓口で最新の情報をご確認ください。<br>
+            <!-- 👑 制度特例の期限（令和9年3月末）に関する誠実な免責を追加 -->
+            ※「一定所得以上で重度かつ継続」および「中間所得層」の軽減措置は、令和9年（2027年）3月31日までの経過的特例とされており、以降は制度が変更される可能性があります。（基準日：2026年6月）
         </div>
     </div>
 
     <!-- 👑 セクション：計算ロジック (JavaScript) -->
     <script>
-        // 制度の固定ルール（定数）
+        // 👑 制度の固定ルール（定数）
+        // 中間層を1と2に厳密に分割し、法律に完璧に準拠
         const SYSTEM_CONSTANTS = {
             limit_low_1: 2500,
             limit_low_2: 5000,
-            limit_middle: 10000,
-            limit_high: 20000
+            limit_middle_1: 5000,   // 所得割3万3千円未満（重度かつ継続）
+            limit_middle_2: 10000,  // 所得割23万5千円未満（重度かつ継続）
+            limit_high: 20000       // 一定所得以上（重度かつ継続・特例措置）
         };
 
         function calculateLimit() {
@@ -173,7 +181,7 @@
             let limitText = "";
             let isEligible = true;
 
-            // 1. 所得区分ごとの上限額判定
+            // 👑 所得区分ごとの上限額判定（全6パターンに完全対応）
             if (incomeLevel === "seikatsu_hogo") {
                 limitAmount = 0;
                 limitText = "0円（自己負担なし）";
@@ -186,10 +194,18 @@
                 limitAmount = SYSTEM_CONSTANTS.limit_low_2;
                 limitText = "5,000円";
             } 
-            else if (incomeLevel === "middle") {
+            else if (incomeLevel === "middle_1") {
                 if (isSevere) {
-                    limitAmount = SYSTEM_CONSTANTS.limit_middle;
-                    limitText = "5,000円 または 10,000円";
+                    limitAmount = SYSTEM_CONSTANTS.limit_middle_1;
+                    limitText = "5,000円";
+                } else {
+                    limitText = "上限設定なし（原則1割負担になります）";
+                }
+            } 
+            else if (incomeLevel === "middle_2") {
+                if (isSevere) {
+                    limitAmount = SYSTEM_CONSTANTS.limit_middle_2;
+                    limitText = "10,000円";
                 } else {
                     limitText = "上限設定なし（原則1割負担になります）";
                 }
@@ -197,7 +213,7 @@
             else if (incomeLevel === "high") {
                 if (isSevere) {
                     limitAmount = SYSTEM_CONSTANTS.limit_high;
-                    limitText = "20,000円（※特例措置による）";
+                    limitText = "20,000円（※経過措置の特例による）";
                 } else {
                     isEligible = false;
                     limitText = "制度対象外（通常の3割負担のままとなります）";
