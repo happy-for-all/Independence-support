@@ -59,6 +59,17 @@
         .checklist li { margin-bottom: 6px; }
 
         .disclaimer { background-color: #f8fafc; color: #64748b; padding: 15px; border-radius: 8px; font-size: 0.75rem; margin-top: 30px; border: 1px solid #e2e8f0; }
+
+/* 👑 セクション：SEO記事（アコーディオン）用スタイル */
+        .seo-article-box { background: #ffffff; padding: 20px; border-radius: 12px; margin-top: 30px; margin-bottom: 25px; border: 1px solid var(--border-color); box-shadow: 0 4px 6px rgba(0,0,0,0.03); }
+        .seo-article-title { color: var(--main-green); font-size: 1.15rem; font-weight: bold; margin-top: 0; margin-bottom: 15px; text-align: center; }
+        .accordion-btn { background-color: #f1f5f9; color: var(--text-main); border: 1px solid #cbd5e1; padding: 15px 20px; font-size: 1rem; font-weight: bold; border-radius: 8px; width: 100%; cursor: pointer; text-align: left; position: relative; transition: 0.2s; margin-bottom: 10px; }
+        .accordion-btn:hover { background-color: #e2e8f0; }
+        .accordion-btn::after { content: '▼'; position: absolute; right: 20px; color: var(--main-green); }
+        .accordion-btn.active::after { content: '▲'; }
+        .accordion-content { display: none; padding: 15px; background-color: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0; margin-bottom: 15px; font-size: 0.95rem; color: var(--text-main); line-height: 1.8; }
+        .accordion-content h4 { color: #0f172a; margin-top: 0; margin-bottom: 10px; font-size: 1.05rem; border-bottom: 2px solid var(--main-green); padding-bottom: 5px; display: inline-block; }
+        .accordion-content p { margin-top: 0; margin-bottom: 15px; }
         
         .adsense-container { text-align: center; margin: 35px 0; min-height: 250px; background-color: rgba(255, 255, 255, 0.5); border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px dashed #cbd5e1; }
         .donation-box { background-color: #ffffff; border: 1px solid var(--border-color); padding: 25px 20px; border-radius: 12px; text-align: center; margin-top: 40px; }
@@ -161,6 +172,54 @@
             ※「一定所得以上で重度かつ継続」の負担上限額（20,000円）は、令和9年（2027年）3月31日までの経過的特例とされており、以降は制度が変更される可能性があります。（基準日：2026年6月）
         </div>
 
+<!-- 👑 セクション：自立支援医療の親切な解説（SEO強化・アコーディオン） -->
+        <div class="seo-article-box">
+            <h2 class="seo-article-title">📘 制度がよくわからない方へ（やさしい解説）</h2>
+            
+            <button class="accordion-btn" onclick="toggleAccordion('faq1', this)">Q1. 自立支援医療制度とは？簡単にいうと？</button>
+            <div id="faq1" class="accordion-content">
+                <h4>つまり、どういうこと？</h4>
+                <p>精神科や心療内科に通う方の<strong>「通院費」や「お薬代」を、国が安くしてくれる制度</strong>です。<br>
+                通常、病院の窓口では医療費の「3割」を支払いますが、この制度を使うと「1割」に減ります。さらに、世帯の収入に応じて「毎月これ以上は払わなくていいよ」という<strong>「上限額（2,500円や5,000円など）」</strong>が決まるため、お金の心配をせずに安心して治療を続けられるようになります。</p>
+            </div>
+
+            <button class="accordion-btn" onclick="toggleAccordion('faq2', this)">Q2. この制度を使うメリットは？</button>
+            <div id="faq2" class="accordion-content">
+                <h4>一番のメリットは「ご飯代（生活費）が浮く」こと</h4>
+                <p>統合失調症やうつ病などの治療は長期間にわたるため、毎月の薬代が数千円〜1万円以上かかることも珍しくありません。生活が苦しい中でのこの出費は、死活問題です。<br>
+                制度を使って毎月の支払いが「2,500円」に固定されれば、<strong>浮いたお金を毎日の食費や、将来のための貯金に回すことができます。</strong>治療を諦めず、あなたの生活を守るための最大のメリットです。</p>
+            </div>
+
+            <button class="accordion-btn" onclick="toggleAccordion('faq3', this)">Q3. 誰でも申請できるの？</button>
+            <div id="faq3" class="accordion-content">
+                <h4>対象となる方</h4>
+                <p>統合失調症、うつ病・双極性障害、てんかん、認知症など、精神疾患で継続的な通院治療が必要な方が対象です。（※高齢者の認知症のお薬代なども対象になります）。<br>
+                まずは主治医に「自立支援医療の申請をしたいのですが、対象になりますか？」と相談し、専用の診断書を書いてもらうことから始まります。</p>
+            </div>
+
+            <button class="accordion-btn" onclick="toggleAccordion('faq4', this)">Q4. 手続きや申請はどうすればいいの？</button>
+            <div id="faq4" class="accordion-content">
+                <h4>申請のながれ</h4>
+                <p>お住まいの市区町村の役所（障害福祉課や保健福祉センターなど）の窓口で申請します。<br>
+                持っていくものは、上のシミュレーターの計算結果に出ている「持ち物リスト」をスマートフォンで画面メモ（スクリーンショット）して、窓口の担当者に見せてください。親切に手続きを進めてもらえます。</p>
+            </div>
+        </div>
+
+        <script>
+            // 👑 アコーディオン（詳しく読む）を開閉する簡単なプログラム
+            function toggleAccordion(id, btn) {
+                const content = document.getElementById(id);
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                    btn.classList.remove("active");
+                } else {
+                    content.style.display = "block";
+                    btn.classList.add("active");
+                }
+            }
+        </script>
+
+        
 </div>   <!-- 👑 ここが消えていました（.containerを閉じるタグ） -->
         
     <!-- 👑 セクション：計算ロジック (JavaScript) -->
